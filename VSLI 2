@@ -1,0 +1,9 @@
+* 2.NMOS Transfer Characteristics 
+.MODEL NMOS1 NMOS VTO=1 KP=200U LAMBDA=0.01 
+.DC VGS 0 5 0.5 VDS 2 8 2 
+M1 2 1 0 0 NMOS1 
+.PRINT DC ID(M1) 
+VGS 1 0 
+VDS 2 0 
+.PROBE 
+.END
