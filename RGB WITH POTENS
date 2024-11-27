@@ -1,0 +1,67 @@
+int pt = 0;
+
+void setup()
+
+{
+
+pinMode(A0, INPUT);
+
+Serial.begin(9600);
+
+pinMode(11, OUTPUT);
+
+pinMode(10, OUTPUT);
+
+pinMode(9, OUTPUT);
+
+pinMode(LED_BUILTIN, OUTPUT);
+
+}
+
+void loop()
+
+{
+
+pt = analogRead(A0);
+
+Serial.println(pt);
+
+if (pt > 680) {
+
+analogWrite(11, 255);
+
+analogWrite(10, 0);
+
+analogWrite(9, 0);
+
+}
+
+if (pt < 340) {
+
+analogWrite(11, 51);
+
+analogWrite(10, 255);
+
+analogWrite(9, 51);
+
+}
+
+if (pt >= 340 && pt <= 680) {
+
+analogWrite(11, 51);
+
+analogWrite(10, 51);
+
+analogWrite(9, 255);
+
+}
+
+digitalWrite(LED_BUILTIN, HIGH);
+
+delay(1000); // Wait for 1000 millisecond(s)
+
+digitalWrite(LED_BUILTIN, LOW);
+
+delay(1000); // Wait for 1000 millisecond(s)
+
+}
