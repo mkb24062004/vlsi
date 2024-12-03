@@ -1,0 +1,26 @@
+//Mayank 
+clc;
+clf;
+clear; 
+function G11 = compute_G11(G0, P1, P2, theta) 
+gg = 1e15; 
+G11 = G0 * (1 + P1 * P2 * cos(theta)); 
+G11 = [G11, 0, 0, 0; 
+        0, gg, 0, 0; 
+        0, 0, gg, 0; 
+        0, 0, 0, gg]; 
+endfunction 
+G0 = 10^-5; 
+P1 = 0.7; 
+P2 = 0.7; 
+theta_values = linspace(0, 2*%pi, 100); 
+G11_values = zeros(4, 4, size(theta_values, 2)); 
+for i = 1:size(theta_values, 2) 
+G11_values(:, :, i) = compute_G11(G0, P1, P2, theta_values(i)); 
+disp('Theta = ' + string(theta_values(i))); 
+disp("G11=");
+disp(G11_values(:, :, i)); 
+end 
+G11_magnitudes = squeeze(G11_values(1, 1, :)); 
+plot(theta_values', G11_magnitudes); 
+xtitle("G11 vs. Theta","Theta(radians)","G11 Magnitude")
