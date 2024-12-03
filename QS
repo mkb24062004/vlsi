@@ -1,0 +1,46 @@
+A = 1e-14;
+L = 1e-7;
+rho = 19 * 1e-8;
+lsf = 5e-9;
+P = 0.23;
+THETA = %pi / 4; // Example value
+ inf = 101;
+// Derived parameters 
+g = A / (rho * L);
+
+// Node voltages (define as needed)
+v1c = 1; // Example voltage at node 1c 
+v2c = 0; // Example voltage at node 2c
+v1z = 0.5; // Example voltage at node 1z 
+v2z = 0.3; // Example voltage at node 2z
+ v1x = 0.2; // Example voltage at node 1x 
+v2x = 0.1; // Example voltage at node 2x
+
+// Currents
+
+Gc12 = g * (v1c - v2c + P * cos(THETA) * v1z - P * cos(THETA) * v2z - P * sin(THETA) * v1x + P * sin(THETA) *v2x);
+
+
+Gz12 = g * cos(THETA) * (P * lsf * sinh(L / lsf) * (v1c - v2c) +  cos(THETA) * P * P * lsf * sinh(L / lsf) * (v1z - v2z) + cos(THETA) * L * (v1z - v2z) - sin(THETA) * P * P * lsf * sinh(L / lsf) * (v1x - v2x) - sin(THETA) * L * (v1x - v2x)) / (lsf * sinh(L / lsf));
+
+
+Gx12 = -g * sin(THETA) * (P * lsf * sinh(L / lsf) * (v1c - v2c) + cos(THETA) * P * P * lsf * sinh(L / lsf) * (v1z - v2z) + cos(THETA) * L * (v1z - v2z) - sin(THETA) * P * P * lsf * sinh(L / lsf) * (v1x - v2x) - sin(THETA) * L * (v1x - v2x)) / (lsf * sinh(L / lsf));
+
+// Self-conductance terms
+
+Gz11 = -g * (-L * sinh(L / (2 * lsf)) * cos(THETA)^2 + L * sinh(L / (2 * lsf)) * P^2 * cos(THETA)^2 - inf * lsf *cosh(L / (2 * lsf)) + inf * lsf * cosh(L / (2 * lsf)) * cos(THETA)^2) /  (cosh(L / (2 * lsf)) * lsf) * v1z + cos(THETA) * g * sin(THETA) * (-L * tanh(L / (2 * lsf)) + L * tanh(L / (2 * lsf)) * P^2 + inf * lsf) / lsf * v1x;
+
+
+Gy11 = g * inf * v1x;
+
+
+// Similarly define Gz22, Gx22, Gy22, etc.
+
+
+ 
+// Display results
+disp("Gc12 = " + string(Gc12)); 
+disp("Gz12 = " + string(Gz12)); 
+disp("Gx12 = " + string(Gx12)); 
+disp("Gz11 = " + string(Gz11)); 
+disp("Gy11 = " + string(Gy11));
