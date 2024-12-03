@@ -1,0 +1,46 @@
+disp("Name : MAYANK") 
+disp("Roll no : 8562")  
+disp("Subject : Quantum spintronic") 
+clc;clear;  
+// Define the G_NM function  
+function [G0N, GN]=G_NM(lsf, rhoN, lN, Area)  
+    // Calculate RN     
+RN = rhoN * lN / Area;     
+disp("RN = ",1/RN)  
+      
+    // Define the GN matrix     
+csch_value = csch(lN / lsf);  
+disp("X = ",(1/RN)*lN / lsf * csch(lN / lsf))      
+GN = (1 / RN) * [1 0 0 0;  
+                 0 lN / lsf * csch_value 0 0;  
+                 0 0 lN / lsf * csch_value 0;  
+                 0 0 0 lN / lsf * csch_value];          
+// Define the G0N matrix     
+coth_value = coth(lN / lsf);
+disp(" Y = ",(1 / RN) * (lN / lsf) * (csch(lN / lsf) - coth(lN / lsf)))  
+G0N = (1 / RN) * (lN / lsf) * [0 0 0 0;  
+                               0 coth_value - csch_value 0 0;  
+                               0 0 coth_value - csch_value 0;                                    
+                               0 0 0 coth_value - csch_value];  
+endfunction  
+  
+// values 
+lsf = 5*10^-6; 
+rhoN = 1.7*10^-8; 
+lN = 1*10^-6; 
+Area = 0.5*10^-6;  
+  
+// Display   
+disp("lsf = " + string(lsf)); 
+disp("rhoN = " + string(rhoN)); 
+disp("lN = " + string(lN));  
+disp("Area = " + string(Area));  
+  
+// Call the function   
+[G0N, GN] = G_NM(lsf, rhoN, lN, Area);  
+  
+// Display the results 
+disp("GN matrix:"); 
+disp(GN);  
+disp("G0N matrix:"); 
+disp(G0N); 
