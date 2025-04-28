@@ -1,0 +1,21 @@
+// Mayank BArman  
+// Roll No. - 22025558001(8562)  
+// PRACTICAL NO. 9  
+// To study Hall effect and determine material type & mobility 
+clear 
+clf 
+disp("Hall-Effect") 
+Bz = input("Please Give The Value of Magnetic field Intensity: ") 
+A =  input("Please give the area of cross section(cm^2): ") 
+W = input("please give the width of semiconductor sample(in micron): 
+") 
+vi = csvRead("C:\Users\MAYANK\Downloads\Hall_Data.csv") 
+x_mean = mean(vi(:,1)) 
+y_mean = mean(vi(:,2)) 
+X = vi(:,1)-x_mean 
+X = vi(:,2)-y_mean 
+VbI = sum(X.*Y)/sum(X.^2) 
+Rh = (VbyI*10e-3*A*10e-4)/(Bz*10e-1*W*10e-6) 
+disp("Hall Coefficient : "+string(Rh)+"m^3/C") 
+Con = 1/(Rh*1.6*10e-19) 
+disp("Concentration of sample : "+string(Con)+"m^(-3)")
