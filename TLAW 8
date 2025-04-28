@@ -1,0 +1,30 @@
+//To determine operating frequency for air filled rectangular 
+waveguide   
+//MAYANK BARMAN  
+//8562 
+//22025558001 
+//EXP-8   
+clc;clear;    
+ 
+// Define function for operating frequency 
+function w=op_f(a, b, m, n) 
+    w = 3e8 * %pi * sqrt(m^2 / a^2 + n^2 / b^2); 
+endfunction 
+ 
+// Loop for 5 inputs 
+for i = 1:5 
+    disp("Enter a, b, m, n:"); 
+    par = mscanf("%f %f %f %f"); 
+ 
+    // Extract values 
+    a = par(1); 
+    b = par(2); 
+    m = par(3); 
+    n = par(4); 
+ 
+    // Calculate frequency in GHz 
+    freq = op_f(a, b, m, n) * 1e-9; 
+    // Print formatted result 
+    mprintf("Operating Frequency for TE%d%d mode is %6.2f GHz\n", 
+m, n, freq); 
+end
