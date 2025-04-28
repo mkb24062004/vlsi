@@ -1,0 +1,32 @@
+//Transmission Line Losses on a Loaded Lossy Line  
+//Mayank Barman  
+//22025558001  
+//8562  
+// Transmission Line Losses on a Loaded Lossy Line  
+// Given parameters  
+Pin = 400;                 
+// Input power in Wa s  
+Zo = 50;                   
+f = 13.56e6;               
+VF = 0.84;                 
+ZL = 50;                  
+L = 20;                   
+// Characteris c impedance in Ohms  
+// Frequency in Hz  
+// Velocity factor  
+// Load impedance in Ohms  
+// Length in meters  
+Gamma_L = (ZL - Zo) / (ZL + Zo);  
+// Convert a enua on constant alpha from dB to Neper  
+alpha_db_per_100m = 1.483;  
+alpha = alpha_db_per_100m * 0.1151277918 / 100; // per meter 
+c = 3e8; velocity = c * VF; beta = 2 * %pi * f / velocity;  
+// Complex propaga on constant gamma = alpha + j*beta 
+gamma = complex(alpha, beta);  
+// Power delivered to the load  
+P_delivered = Pin * exp(-2 * alpha * L);  
+// Power lost in the cable  
+P_lost = Pin - P_delivered; // 
+Display results  
+disp("Power delivered to the load (W): " + string(P_delivered)); 
+disp("Power lost in the cable (W): " + string(P_lost));  
