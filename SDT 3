@@ -1,0 +1,35 @@
+Aim - To study linear and parabolic rate constant for oxidation (dry & wet) process   
+//MAYANK BARMAN 8562 
+clc; clf; clear; close; 
+function [a0, a1]=z(x, y) 
+x_mean = mean(x); 
+y_mean = mean(y); 
+X = x - x_mean; 
+Y = y - y_mean; 
+a0 = sum(X .* Y) / sum(X .^ 2); 
+a1 = y_mean - a0 * x_mean; 
+endfunction 
+// -------- Dataset 1 -------- 
+temp_c = [1200,1100,1000,920,800,700]; 
+temp_k = temp_c + 273.15; 
+temp_k1 = 1000 ./ temp_k; 
+rate_c = [1.21,0.3,0.071,0.0208,0.003,0.00026]; 
+scf(0); // Create figure 
+plot(temp_k1, log(rate_c), 'ro'); 
+[a0, a1] = z(temp_k1, log(rate_c)); 
+// Line fitting 
+temp = linspace(min(temp_k1), max(temp_k1), 100); 
+rate_fit = a0 * temp + a1; 
+plot(temp, rate_fit, 'b-'); 
+// -------- Dataset 2 -------- 
+temp_c1 = [1200,1100,1000,920]; 
+temp_k1 = temp_c1 + 273.15; 
+temp_k11 = 1000 ./ temp_k1; 
+rate_c1 = [14.4,4.64,1.24,0.406]; 
+plot(temp_k11, log(rate_c1), 'go'); 
+[a02, a12] = z(temp_k11, log(rate_c1)); 
+rate_fit2 = a02 * temp + a12; 
+plot(temp, rate_fit2, 'g-'); 
+// Titles and labels 
+xtitle("Arrhenius Plot", "1000 / T (K^{-1})", "ln(rate)"); 
+xgrid(); 
