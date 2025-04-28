@@ -1,0 +1,20 @@
+Aim - To study the ion implanta on process   
+Apparatus – Scilab   
+Program –   
+// Mayank Barman 8562  
+clc; clf; clear; close; 
+E = 100:100:300;   
+S = 10^7 * sqrt(E);  
+Sigmap = 0.077 * 10^-6;  
+x = 0:0.05*10^-7:0.90*10^-6;  
+Rp = 0.31 * 10^-6;  
+col = ['r', 'g', 'b', 'k', 'm'];  
+index = 1;  
+for k = S   
+n = (k ./ (sqrt(2 * %pi) * Sigmap)) .* exp( -((x - Rp).^2) ./ (2 * (Sigmap)^2) ); 
+plot(x, n, col(index));   
+legen(index) = msprin ("E = %.0f keV", (k / 10^7)^2);  
+index = index + 1;  
+end  
+x tle("Ion Implanta on", "Depth (m)", "Concentra on (ions/m^3)");  
+legend(legen, "in_lower_right");
