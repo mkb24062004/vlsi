@@ -1,0 +1,32 @@
+//To study four probe method and determine the resistivity of material  
+// MAYANK BARMAN 
+// Roll No. - 22025558001(8562)  
+clear 
+clf 
+VI = csvRead("C:\Users\Mayank\Downloads\four-probe.csv") 
+disp("four probe method") 
+for i = 1:4 
+    mn(i)=mean(VI(:,i)) 
+end 
+for i =1:4 
+    X(:,i)=VI(:,i)-mn(i) 
+end 
+VbyI=[] 
+for i=1:3 
+    t1=0 
+    t2=0 
+    for j = 1:length(VI)/4 
+        t1 = t1+X(j,1)*X(j,i+1) 
+        t2 = t2 + X(j,1)^2 
+    end 
+   VbyI(i)=t1/t2 
+end 
+disp(VbyI) 
+d=input("Enter the average diameter of sample:") 
+s=input("Enter the probe Spacing:") 
+W=input("Enter the thickness of material:") 
+rho = VbyI*W*d/s 
+for i = 1:3 
+    disp("the value of resistivity of sample"+string(i)+" is: 
+"+string(rho(i))+"ohm meter") 
+end 
