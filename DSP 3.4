@@ -1,0 +1,45 @@
+4.	Write a program to compute and plot pole-zero diagrams for multiple transfer functions on the same plot. Use the following transfer functions:
+(a)	H1(z) = (z - 0.6)/(z2 + 0.3z + 0.1)
+(b)	H2(z)=(z2 - 0.5z + 0.25)/(z3 + 0.6z2 + 0.36z + 0.216)
+Use different colours or markers for the poles and zeros of each transfer function. Include a legend to distinguish between transfer functions.
+
+clc; clear; clf;
+
+// === Transfer Function 1: H1(z) = (z - 0.6)/(z^2 + 0.3z + 0.1)
+N1 = poly([-0.6, 1], "z", "coeff");           // Numerator: z - 0.6
+D1 = poly([0.1, 0.3, 1], "z", "coeff");       // Denominator: z^2 + 0.3z + 0.1
+z1 = roots(N1);                               // Zeros of H1
+p1 = roots(D1);                               // Poles of H1
+
+// === Transfer Function 2: H2(z) = (z^2 - 0.5z + 0.25)/(z^3 + 0.6z^2 + 0.36z + 0.216)
+N2 = poly([0.25, -0.5, 1], "z", "coeff");     // Numerator: z^2 - 0.5z + 0.25
+D2 = poly([0.216, 0.36, 0.6, 1], "z", "coeff"); // Denominator: z^3 + 0.6z^2 + 0.36z + 0.216
+z2 = roots(N2);                               // Zeros of H2
+p2 = roots(D2);                               // Poles of H2
+
+// === Plot Setup
+plot2d([], []);
+xgrid();
+a = gca();
+a.isoview = "on";
+a.data_bounds = [-1.001, -1.001; 1.001, 1.001];
+xlabel("Real");
+ylabel("Imaginary");
+title("Pole-Zero Plot of H1(z) and H2(z)");
+
+// === Plot Unit Circle
+theta = 0:0.01:2*%pi;
+x = cos(theta);
+y = sin(theta);
+plot(x, y, 'k-'); // Black unit circle
+
+// === Plot H1
+h1_zeros = plot(real(z1), imag(z1), 'bo'); // Zeros of H1 - blue circles
+h1_poles = plot(real(p1), imag(p1), 'rx'); // Poles of H1 - red crosses
+
+// === Plot H2
+h2_zeros = plot(real(z2), imag(z2), 'g^'); // Zeros of H2 - green triangles
+h2_poles = plot(real(p2), imag(p2), 'ms'); // Poles of H2 - magenta squares
+
+// === Add Legend
+legend([h1_zeros, h1_poles, h2_zeros, h2_poles], ["H1 Zeros", "H1 Poles", "H2 Zeros", "H2 Poles"]);
