@@ -1,0 +1,27 @@
+// MAYANK BARMAN   
+// 8562 
+// 22025558001  
+// Program to determine the instantaneous field of a plane wave  
+// Clear workspace and console  
+clc; clear;  
+// Input parameters  
+disp("Enter the parameters for the plane wave:");  
+amplitude = input("Amplitude (A): ");       
+// Magnitude of the wave  
+frequency = input("Frequency (f in Hz): "); // Frequency of the wave in Hz 
+phase = input("Phase (φ in degrees): ");    // Ini al phase of the wave 
+posi on = input("Posi on (z in meters): "); // Posi on along the propaga onaxis 
+me = input("Time (t in seconds): ");      // Time instant  
+// Speed of light in free space (if applicable)  
+c = 3e8;  // m/s  
+// Compute the angular frequency (ω) and wavenumber (k)  
+omega = 2 * %pi * frequency;   // Angular frequency  
+wavelength = c / frequency;     // Wavelength  
+k = 2 * %pi / wavelength;        
+// Wavenumber  
+// Convert phase from degrees to radians  
+phase_rad = phase * (%pi / 180);  
+// Compute the instantaneous field  
+instantaneous_field = amplitude * cos(omega * me - k * posi on + phase_rad);  
+// Display the result  
+disp("The instantaneous field of the plane wave is:"); disp(instantaneous_field);  
