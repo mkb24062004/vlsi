@@ -1,0 +1,14 @@
+//Find the characteris c impedance and the phase constant of a distor onless line  
+//MAYANK BARMAN  
+//8562 
+//22025558001  
+// Given values  
+L = 0.25e-6; // H/m  
+C = 100e-12; // F/m  
+f = 600e6;   // Hz  
+// Characteristic impedance 
+Z0 = sqrt(L / C);  
+disp("The characteristic impedance, Z0 (ohms): " + string(Z0));  
+// Phase constant (beta)  
+beta = 2 * %pi * f * sqrt(L * C);  
+disp("The phase constant, beta (rad/m): " + string(beta)); 
