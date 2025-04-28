@@ -1,0 +1,27 @@
+Aim - To Study Constant total dopant Concentration Diffusion Process 
+   
+Apparatus – Scilab   
+   
+Program –  
+ 
+//Maynk Barman 
+// Roll No. - 22025558001 (8562)   
+clc;clf; clear; close;   
+x = linspace(0,4,40000)   
+Dt = [0.1,0,5,1]  
+S = 10e21   
+col=['r','g','b','k','m']  
+index =1  
+for k = Dt   
+     Y = [(S./sqrt(%pi.*k)).*exp(-x^2./(4.*k))]  
+     subplot(2,1,1)  
+     plot(x,Y,col(index))  
+     xgrid  
+     subplot(2,1,2)  
+     plot(x,log(Y),col(index))  
+     xgrid   
+     legen(index)= msprintf("Do=%.3f",k)  
+     index = index+1  
+end   
+xtitle("constant dopant concentration coefficient","diffusion 
+coefficient","C/S") 
