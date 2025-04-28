@@ -1,0 +1,20 @@
+A digital filter is designed with the transfer function:
+H(z)=(1+0.5z−1)/(1−0.9z−1+0.81z−2)
+Compute the poles and zeros of the filter. Plot the pole-zero diagram, discuss the relationship between pole-zero locations and filter characteristics. 
+Discuss whether the filter is stable and what kind of response (low-pass, high-pass, etc.) it exhibits based on the pole-zero plot.
+
+clc; clear; clf;
+//MAYANK BARMAN 
+//8562 (22025558001) 
+
+N = poly([0 0.5 1], "z", "coeff");
+D = poly([0.81 -0.9 1], "z", "coeff");
+s = syslin('d',N,D)
+plzr(s)
+
+p = roots(D);
+if (abs(p) < 1) then
+    disp("System is stable");
+else
+    disp("System is unstable");
+end
