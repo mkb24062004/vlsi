@@ -1,0 +1,20 @@
+Aim - To study the lithographic process 
+Apparatus – Scilab   
+Program –  
+//Mayank BARMAN 8562  
+clc; clf; clear; close;   
+A=input("Please Give The Chip Area -->")   
+N=input("Please Give ine Mask Level -->")   
+Area=linspace(0,A,100)  
+Do=[0.025,0.1,0.25,0.5,1]  
+col=['r','g','b','k','m']  
+index=1 
+for k=Do    
+Y=[exp((-N).*k.*Area/100)*100]  
+plot(Area,log(Y),col(index));  
+legen(index)=msprintf("Do=%.3f",k)  
+index=index+1  
+end  
+xgrid   
+xtitle("Lithographic Yield","Chip Area","Yield")   
+legend(legen,"in_lower_left"); 
