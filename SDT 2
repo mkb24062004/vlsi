@@ -1,0 +1,22 @@
+// MAYANK BARMAN 
+// Roll No. - 22025558001(8562)     
+// To Study of Float Zone Technique For Crystal Growth  
+ 
+clc; clear; clf;   
+C0 = input("enter the value of C0 - ")  
+K0 = [3,2,1,.9,.5,.3,.2,.1,.05,.01]   
+col = ['r','g','b','c','m','y','k','r-','g-','b-']   
+L0 = input("enter the value of L0 - ")  
+x=linspace(0,9.5*L0,100)  
+index = 1  
+for K = K0   
+        Cs = [C0*(1-(1-K)*exp(-K*x/L0))]      
+        plot(x/L0,log(Cs/C0),col(index))      
+        legen(index)=msprin ("K0=%.2f",K)      
+        legend(legen,"in_lower_right")      
+        xgrid      
+        xlabel("x/L0")      
+        ylabel("log(Cs/C0)")   
+        x tle("Frac on Solidified")          
+        index = index+1  
+end 
