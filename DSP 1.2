@@ -1,0 +1,18 @@
+//MAYANK BARMAN  
+//22025558001(8562) 
+// Aim: Generate and plot the Unit Step Sequence u[n-d] for d = 0, 5, -3 funcprot(0) 
+clc 
+clf 
+n = -10:10 
+func on u = unit_step(n, d) 
+u = bool2s(n - d >= 0) 
+endfunc on 
+d_values = [0, 5, -3] 
+for i = 1:3 
+u = unit_step(n, d_values(i)) 
+subplot(3,1,i) 
+plot2d3(n, u) 
+xlabel("n") 
+ylabel("u[n - " + string(d_values(i)) + "]") 
+title("Unit Step u[n - " + string(d_values(i)) + "]") 
+end 
