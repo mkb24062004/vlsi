@@ -1,0 +1,14 @@
+1.	Write a program to compute the poles and zeros of a transfer function given its numerator and denominator coefficients. 
+Use N(z)=z2-0.5z+0.25 and D(z)=z2+0.4z+0.2. Plot the poles and zeros on the complex plane, marking zeros with a circle (o) 
+and poles with a cross (x). Label the axes and include the unit circle for reference.
+2.	Modify the above program to allow the user to input the numerator and denominator coefficients interactively.
+ Compute and display the poles and zeros. Plot the pole-zero diagram for the user-defined transfer function.
+(part -2 )
+
+clc; clear; clf;
+num = input("Enter coeffcients of numerator")
+denom = input("Enter coeffcients of denominator")
+N = poly([num], "z", "coeff");
+D = poly([denom], "z", "coeff");
+s = syslin('d',N,D)
+plzr(s)
