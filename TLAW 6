@@ -1,0 +1,19 @@
+Program to find the total power transmi ed through the lossless transmission line  
+//Mayank  
+//8562 
+//22025558001 
+// Define complex load and line impedance  
+ZL = 50 - %i * 75;   // Load impedance (complex)  
+ZO = 50;             
+// Characteristic impedance  
+Pin = 100e-3;        
+// Incident power in Watts  
+// Reflection Coefficient R = (ZO - ZL) / (ZO + ZL)  
+R = (ZO - ZL) / (ZO + ZL);  
+// Power transmitted to load: Ptr = (1 - |R|^2) * Pin  
+Ptr = (1 - abs(R)^2) * Pin; //Display results 
+disp("Reflection 
+Coefficient: "); 
+disp(R);  
+disp("Power transmitted in mW: ");  
+disp(Ptr * 1000);
