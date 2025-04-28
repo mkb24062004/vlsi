@@ -1,0 +1,48 @@
+Write a program to analyse how slight variations in the denominator coefficients affect the pole locations. 
+Use D(z)=z2+a1z+a2 where a1=−1.2 and a2=0.72. Vary a1 from -1.5 to -0.9 in steps of 0.1 and plot the poles for each case on the same diagram. Discuss how the stability of the system changes with variations in a1.
+
+clc; clear; clf;
+//MAYANK BARMAN 
+//8562 (22025558001) 
+
+// === Plot Setup
+plot2d([], []);
+xgrid();
+a = gca();
+a.isoview = "on";
+a.data_bounds = [-1.001, -1.001; 1.001, 1.001];
+a.auto_scale = "off";
+
+xlabel("Real");
+ylabel("Imaginary");
+title("Pole Evolution with Varying Denominator Coefficient");
+
+// === Plot Unit Circle
+theta = 0:0.01:2*%pi;
+x = cos(theta);
+y = sin(theta);
+plot(x, y, 'k-'); // Black unit circle
+
+// === Numerator stays constant
+N = poly([0.25 -0.5 1], "z", "coeff");
+zeroes = roots(N);
+plot(real(zeroes), imag(zeroes), 'bo'); // Blue circles for zeros
+
+// === Color list (loop will cycle through these)
+colors = ['r', 'g', 'm', 'c', 'y']; // red, green, magenta, cyan, yellow
+color_index = 1;
+
+// === Vary denominator coefficient a1
+for a1 = -0.9:0.1:1.55
+    D = poly([0.72 a1 1], "z", "coeff");
+    poles = roots(D);
+    
+    // Cycle through colors
+    this_color = colors(color_index);
+    plot(real(poles), imag(poles), this_color + 'x'); // 'x' for poles
+    
+    color_index = color_index + 1;
+    if color_index > size(colors, "*") then
+        color_index = 1; // Loop back to start of color list
+    end
+end
