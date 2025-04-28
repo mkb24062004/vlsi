@@ -1,0 +1,26 @@
+write a program to compute the poles and zeros of a transfer function given as:
+    
+Plot the poles and zeros on the complex plane, marking zeros with a circle (o) and poles with a cross (x). Label the axes and include the unit circle for reference.
+
+clc; clear; clf;
+//MAYANK BARMAN 
+//8562 (22025558001) 
+//X(z) = 2z(z-1/12)/(z+1/3)(z-1/2)
+N = poly([-1/6 0 2],"z","coeff")
+D = poly([-1/6 -1/6 1],"z","coeff")
+s = syslin('d',N,D)
+subplot(1,2,1)
+plzr(s)
+
+//X(z) = 1/z^N-1*z^N - a^N/z-a
+//Taking a = 0.5, N=3
+// Numerator: z^3 - 0.125
+N = poly([-0.125, 0, 0, 1], "z", "coeff");
+
+// Denominator: z^3 - 0.5z^2
+D = poly([0, 0, -0.5, 1], "z", "coeff");
+
+X = syslin('d', N, D);
+subplot(1,2,2)
+plzr(X);
+title("Pole-Zero Plot of X(z) for a = 0.5, N = 3");
