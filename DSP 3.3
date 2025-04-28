@@ -1,0 +1,15 @@
+Write a program to check the stability of the system having the transfer function H(z)=(z-0.8)/(z2-1.2z+0.72). Determine the stability and plot the pole-zero diagram. Also, add a message indicating whether the system is stable or unstable.
+Note: A discrete-time system is stable if all poles are inside the unit circle (∣z∣<1).
+
+clc; clear; clf;
+N = poly([-0.8 1], "z", "coeff");
+D = poly([0.72 -1.2 1], "z", "coeff");
+s = syslin('d',N,D)
+plzr(s)
+
+poles = roots(D);
+if (abs(poles) < 1) then
+    disp("The system is STABLE (all poles are inside the unit circle).");
+else
+    disp("The system is UNSTABLE (one or more poles are outside the unit circle).");
+end
