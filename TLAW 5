@@ -1,0 +1,17 @@
+Program to find the power dissipated of the lossy transmission line  
+//MAYANK BARMAN 
+//22025558001 
+//8562 
+// Define values  
+Loss_1 = 0.2 * 10;  
+Loss_2 = 0.1 * 15;  
+R = 0.3;  
+Pin = 100e-3;  
+// Calculate Loss_j  
+Loss_j = 10 * log10(1 / (1 - abs(R)^2));  
+// Total loss  
+Loss_total = Loss_1 + Loss_2 + Loss_j;  
+// Output power calcula on  
+Pout = Pin * 10^(-Loss_total / 10);  
+disp("Total Loss in dB: " + string(Loss_total));  
+disp("Power transmi ed in mW: " + string(Pout * 1000));  
