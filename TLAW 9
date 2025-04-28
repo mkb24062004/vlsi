@@ -1,0 +1,43 @@
+AIM:RADIATION PATTERN WITH BEAMWIDTH  
+//MAYANK BARMAN  
+//8562 
+//22025558001 
+clc; 
+clear; 
+clf(); // Clear previous plots 
+// --- Radiation Pattern Function --- 
+function val=rad_pattern(theta) 
+val = cos(theta)^2; // Simple radiation pattern 
+endfunction 
+// --- Define angle ranges --- 
+theta = linspace(0, %pi, 100);  // Theta: 0 to π 
+phi = linspace(0, 2 * %pi, 100); // Phi: 0 to 2π 
+// --- Calculate Total Radiated Power --- 
+total_power = 0; 
+for i = 1:length(theta) 
+for j = 1:length(phi) 
+total_power = total_power + rad_pattern(theta(i)) * 
+sin(theta(i)); 
+end 
+end 
+// --- Directivity (Unitless) --- 
+max_val = max(rad_pattern(theta)); // Maximum radiation 
+D = (4 * %pi * max_val) / total_power; 
+disp("Directivity = " + string(D)); // No dB, just raw value 
+// --- Beamwidth Calculation --- 
+theta_bw = linspace(-%pi/2, %pi/2, 200); 
+pattern = rad_pattern(theta_bw); 
+half_power = max(pattern) / sqrt(2); // Half power level 
+idx = find(pattern >= half_power); 
+beamwidth = theta_bw(idx($)) - theta_bw(idx(1)); 
+beam_deg = beamwidth * 180 / %pi; 
+disp("Beamwidth = " + string(beam_deg) + " degrees"); 
+// --- Plot Radiation Pattern --- 
+plot(theta_bw, pattern, 'b'); 
+xgrid(); 
+xlabel("Theta (radians)"); 
+ylabel("Radiation Pattern"); 
+title("Radiation Pattern with -3 dB Line"); 
+// Draw horizontal line at half-power level 
+plot([theta_bw(1), theta_bw($)], [half_power, half_power], 'r--'); // 
+red dashed line 
