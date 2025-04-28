@@ -1,0 +1,23 @@
+Aim: Op cal Band gap esma on using transmi ance plot  
+Apparatus : Scilab  
+Program : 
+Clc;clf;clear; 
+//Mayank Barman  
+//8562 //22025558001  
+data=csvRead("C:\Mayank\Downloads\OpticalPropertiesOfSilicon.csv") 
+n1=length(data)/2  
+data(:,3)=1240./data(:,1)  
+data(:,4)=(data(:,3).*data(:,2)*10e7)^(1/0.5) 
+data(:,5)=(data(:,3).*data(:,2)*10e7)^(1/2)  
+//disp(data) 
+x=data(:,3)  
+y=data(:,4)  
+z=data(:,5) 
+subplot(1,2,1) 
+plot(x,y)  
+xtitle("Optical bandgap (n=0.5) Indirect Bandgap","hv","(Alpha*hv)^(1/n)") 
+xgrid  
+subplot(1,2,2)  
+plot(x,z)  
+xgrid  
+xtitle("Optical bandgap (n=2) Direct Bandgap","hv","(Alpha*hv)^(1/n)") 
