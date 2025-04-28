@@ -1,0 +1,37 @@
+Aim -To design photolithographic pattern mask 
+   
+Apparatus – Scilab   
+   
+Program –   
+//Mayank Barman  
+//22025558001 (8562) 
+clc;clf;clear;close; 
+function [Z]=mask(mnx, mxx, mny, mxy, z1)      
+    for x=mnx:mxx          
+        for y=mny:mxy             
+            Z(x,y)=z1          
+        end      
+    end  
+endfunction   
+[Z]=mask(1,11,1,11,0.0999)   
+surf(Z,'facecol','white','edgecol','white');   
+[Z]=mask(1,11,5,10,0.1)   
+surf(Z,'facecol','green','edgecol','black');   
+[Z]=mask(2,10,6,9,0.11)   
+surf(Z,'facecol','blue','edgecol','black');   
+[Z]=mask(3,4,7,8,0.125)   
+surf(Z,'facecol','grey','edgecol','black');   
+[Z]=mask(8,9,7,8,0.125)   
+surf(Z,'facecol','grey','edgecol','black');   
+[Z]=mask(4,8,1,4,0.12)   
+surf(Z,'facecol','red','edgecol','black');   
+[Z]=mask(5,7,4,11,0.12)   
+surf(Z,'facecol','red','edgecol','black');   
+[Z]=mask(5,7,2,3,0.125)   
+surf(Z,'facecol','grey','edgecol','black');  
+xa=12*[zeros(4,2),ones(4,2),zeros(4,1)]  
+ya=12*ones(4,5)  
+ya(2:3,2:3)=0   
+za=0.099*[zeros(2,5); 
+ones(2,5)]  
+plot3d2(xa,ya,za) 
