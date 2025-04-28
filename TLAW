@@ -1,0 +1,21 @@
+// Mayank 
+// 8562 
+// 22025558001  
+// Program to determine the phasor of forward propaga ng field  
+// Clear workspace and console  
+clc; clear;  
+// Input parameters  
+disp("Enter the parameters for the forward propaga ng field:"); 
+amplitude = input("Amplitude (A): ");  
+frequency = input("Frequency (f in Hz): "); 
+phase = input("Phase (φ in degrees): ");  
+me = input("Time (t in seconds): ");  
+// Convert phase from degrees to radians  
+phase_rad = phase * (%pi / 180);  
+// Compute the angular frequency (ω)  
+omega = 2 * %pi * frequency;  
+// Compute the phasor representa on  
+phasor = amplitude * exp(%i * (omega * me + phase_rad));  
+// Display the result  
+disp("The phasor of the forward propaga ng field is:"); 
+disp(phasor); 
