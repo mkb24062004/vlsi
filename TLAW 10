@@ -1,0 +1,29 @@
+//HERTZIAN DIPOLE  
+// EXP- 10  
+//MAYANK BARMAN   
+//8562  
+c = 3e8; // Speed of light in m/s  
+frequency = 1e9; // Frequency in Hz (1 GHz)  
+wavelength = c / frequency; // Wavelength in meters  
+L = wavelength / 2; // Length of the dipole (half-wavelength)  
+// Radiation Resistance calculation  
+R_r = 80 * %pi^2 * (L / wavelength)^2 ; 
+disp("Radiation Resistance (Rr): " + string(R_r) + " ohms");  
+// 3D Radiation Pattern of Hertzian Dipole  
+theta = linspace(0, %pi, 180); // Angle from 0 to π (polar angle)  
+phi = linspace(0, 2*%pi, 360); // Azimuthal angle from 0 to 2π  
+[THETA, PHI] = ndgrid(theta, phi); // Create meshgrid for angles  
+// Radiation pattern (P(θ,φ)   sin^2(θ))  
+P_theta_phi = sin(THETA).^2;  
+X= P_theta_phi .* sin(THETA) .* cos(PHI);  
+Y= P_theta_phi .* sin(THETA) .* sin(PHI);  
+Z= P_theta_phi .* cos(THETA);  
+// Plotting the 3D radiation pattern  
+clf;  
+surf(X, Y, Z); // 3D surface plot  
+xlabel("X-axis");  
+ylabel("Y-axis");  
+zlabel("Z-axis");  
+title("3D Radiation Pattern of Hertzian Dipole");  
+colorbar();  
+// Show color bar to indicate magnitude/ 
