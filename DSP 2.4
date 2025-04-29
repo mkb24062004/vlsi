@@ -1,0 +1,26 @@
+//MAYANK BARMAN  
+//22025558001(8562) 
+// Aim: Compute DTFT of x[n] = cos(πn/4) for 0 <= n <= 100 
+n = 0:100 
+x = cos(%pi * n / 4) 
+w = linspace(-%pi, %pi, 512) 
+X = zeros(1, length(w)) 
+for k = 1:length(w) 
+for i = 1:length(n) 
+X(k) = X(k) + x(i) * exp(-%i * w(k) * n(i)) 
+end 
+end 
+// Plot 
+scf(3) 
+subplot(2,2,1) 
+plot(w, abs(X)) 
+title("Magnitude of DTFT") 
+subplot(2,2,2) 
+plot(w, atan(imag(X),real(X))) 
+title("Phase of DTFT") 
+subplot(2,2,3) 
+plot(w, real(X)) 
+title("Real part of DTFT") 
+subplot(2,2,4) 
+plot(w, imag(X)) 
+title("Imaginary part of DTFT")
