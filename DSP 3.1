@@ -1,0 +1,20 @@
+Write a program to compute the poles and zeros of a transfer func on given its numerator 
+and denominator coefficients. Use N(z)=z2-0.5z+0.25 and D(z)=z2+0.4z+0.2. Plot the 
+poles and zeros on the complex plane, marking zeros with a circle (o) and poles with a 
+cross (x). Label the axes and include the unit circle for reference.  
+Code -   
+//Mayank Barman (8562) 22025558001 
+clc; clear; clf; 
+N = [1, -0.5, 0.25]; 
+D = [1, 0.4, 0.2]; 
+z = roots(N); 
+p = roots(D); 
+plot2d([], []); 
+plot(real(z), imag(z), 'o');    // Zeros - circles 
+plot(real(p), imag(p), 'x');    // Poles - crosses 
+theta = 0:0.01:2*%pi; 
+plot(cos(theta), sin(theta), '-r');  // Unit circle 
+xtitle('Pole-Zero Plot', 'Real Axis', 'Imaginary Axis'); 
+xgrid(); 
+gca().data_bounds = [-1.5, -1.5; 1.5, 1.5]; 
+zeros  
