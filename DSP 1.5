@@ -1,0 +1,22 @@
+//Aim: Generate and plot the sequence x[n] = 0.5δ[n] + u[n−5] − 0.2r[n−2] + sin(2π(0.1)n) 
+//MAYANK BARMAN  
+//200 
+clc; 
+clf; 
+n = -10:20 
+// δ[n] 
+delta = (n == 0) 
+// u[n-5] 
+u = (n - 5 >= 0) 
+// r[n-2] 
+r = (n - 2) .* (n - 2 >= 0) 
+// Sinusoidal part 
+sine = sin(2 * %pi * 0.1 * n) 
+// Final x[n] 
+x = 0.5 * delta + u - 0.2 * r + sine 
+// Plot 
+scf(4) 
+plot2d3(n, x) 
+xlabel("n") 
+ylabel("x[n]") 
+title("x[n] = 0.5δ[n] + u[n−5] − 0.2r[n−2] + sin(2π(0.1)n)") 
