@@ -1,0 +1,57 @@
+//MAYANK BARMAN  
+//22025558001(8562) 
+// Aim: Compute DTFT of rectangular pulse of length 2N+1 over [-π, π] 
+ 
+funcprot(1) 
+ 
+func on [a]=x_f(n) 
+    N = -100:100 
+    a = zeros(N) 
+    for k = 1:length(N) 
+        if (-n <= N(k)) & (N(k) <= n) then 
+            a(k) = 1 
+        else 
+            a(k) = 0 
+        end 
+    end 
+endfunc on 
+ 
+func on [X, w]=compute_X(x) 
+    N = -100:100 
+    w = -%pi:0.005:%pi 
+    X = zeros(w) 
+    for k = 1:length(w) 
+        X1 = zeros(x) 
+        for n = 1:length(x) 
+            X1(n) = x(n) * exp(-%i * w(k) * N(n)) 
+        end 
+        X(k) = sum(X1) 
+    end 
+endfunc on 
+ 
+x1 = x_f(2) 
+[X1, w] = compute_X(x1) 
+ 
+x2 = x_f(5) 
+[X2, w] = compute_X(x2) 
+ 
+x3 = x_f(10) 
+[X3, w] = compute_X(x3) 
+ 
+x4 = x_f(15) 
+[X4, w] = compute_X(x4) 
+ 
+clf() 
+ 
+subplot(2,2,1) 
+plot(w, abs(X1)) 
+title('X1 (n=2)') 
+subplot(2,2,2) 
+plot(w, abs(X2)) 
+title('X2 (n=5)') 
+subplot(2,2,3) 
+plot(w, abs(X3)) 
+title('X3 (n=10)') 
+subplot(2,2,4) 
+plot(w, abs(X4)) 
+title('X4 (n=15)') 
