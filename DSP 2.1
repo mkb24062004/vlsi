@@ -1,0 +1,29 @@
+//MAYANK BARMAN  
+//22025558001(8562) 
+// Aim: Compute and plot DTFT of x[n]={1,2,3,4} over [0, 2π] 
+x = [1, 2, 3, 4] // input sequence 
+N = length(x) 
+w = linspace(0, 2*%pi, 512) // frequency points 
+X = zeros(1, length(w)) // DTFT 
+for k = 1:length(w) 
+for n = 0:N-1 
+X(k) = X(k) + x(n+1) * exp(-%i * w(k) * n) 
+end 
+end 
+// Plot 
+subplot(2,2,1) 
+plot(w, abs(X)) 
+title("Magnitude of DTFT") 
+xlabel("ω") 
+ylabel("|X(e^{jω})|") 
+subplot(2,2,2) 
+plot(w,atan(imag(X),real(X))) 
+title("Phase of DTFT") 
+xlabel("ω") 
+ylabel("∠X(e^{jω})") 
+subplot(2,2,3) 
+plot(w, real(X)) 
+title("Real part of DTFT") 
+subplot(2,2,4) 
+plot(w, imag(X)) 
+title("Imaginary part of DTFT") 
