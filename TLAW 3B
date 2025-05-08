@@ -1,0 +1,21 @@
+//Write a program to determine,  
+//Magnitude of reflected electric field vector (Er/Ei)  
+//Magnitude of transmi ed electric field vector (Et/Ei)  
+//Magnitude of reflected magne c field vector (Hr/Hi)  
+//Magnitude of transmi ed magne c field vector (Ht/Hi)  
+//Mayank Barman 
+//8562 
+//22025558001  
+// Scilab code to calculate reflected and transmi ed field vectors 
+er = 5; // Rela ve permi vity  
+etal = 120 * %pi; // Intrinsic impedance of free space 
+eta2 = etal / sqrt(er); // Intrinsic impedance of  dielectric medium  
+erei = (eta2 - etal) / (etal + eta2); // Er/Ei 
+etei = (2 * eta2) / (etal + eta2);    // Et/Ei  
+hrhi = (etal - eta2) / (etal + eta2); // Hr/Hi 
+hthi = (2 * etal) / (etal + eta2);    // Ht/Hi  
+// Display the results (forma ed to 2 decimal places) 
+mprintf ("Er/Ei = %.2f\n", erei);  
+mprintf ("Et/Ei = %.2f\n", etei);  
+mprintf ("Hr/Hi = %.2f\n", hrhi);  
+mprintf ("Ht/Hi = %.2f\n", hthi);  
