@@ -1,0 +1,26 @@
+//An electromagne c wave having its electric field vector polarized parallel to the plane of 
+//incidence is incident at an angle theta_i. Refrac ve index of the first medium is 1 and the second 
+//medium is 1.33. Plot as a func on of theta_i, varia on of reflec on factor, reflec on coefficient, 
+//transmission factor, transmission coefficient.  
+//Mayank Barman  
+//8562 
+//22025558001 
+n1 = 1;  
+n2 = 1.33;  
+theta_i = linspace(0, %pi/2, 20); // 0 to 90 degrees in radians 
+alpha = sqrt(1 - ((n1 * sin(theta_i) ./ n2).^2)) ./ cos(theta_i);  
+beta = n2 / n1;  
+R = (alpha - beta) ./ (alpha + beta);  
+Rc = R.^2;  
+Tc = ((2 ./ (alpha + beta)).^2) .* alpha .* beta;  
+T = 2 ./ (alpha + beta);  
+// Convert theta_i to degrees for plo ng  
+theta_deg = theta_i * 180 / %pi ;  
+clf(); // clear the figure 
+plot(theta_deg, R, 'o'); 
+plot(theta_deg, T, '*'); 
+plot(theta_deg, Rc, 'rP-'); 
+plot(theta_deg, Tc, 'gX-');  
+legend(["R", "T", "Rc", "Tc"]);  
+xtitle("Reflec on and Transmission Coefficients vs Incident Angle", "Incident Angle (degrees)", "Coefficient Value"); 
+xgrid(); 
